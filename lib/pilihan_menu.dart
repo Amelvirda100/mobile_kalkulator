@@ -17,9 +17,11 @@ class PilihanMenu extends StatelessWidget {
         child: SafeArea(
           child: SingleChildScrollView(
             child: Container(
-              constraints: const BoxConstraints(maxWidth: 480),
+              width: MediaQuery.of(context)
+                  .size
+                  .width, // Menggunakan lebar layar HP
               margin: const EdgeInsets.symmetric(horizontal: 16),
-              padding: const EdgeInsets.fromLTRB(56, 72, 56, 116),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
               decoration: const BoxDecoration(
                 color: Color(0xFFCCD4EE),
               ),
@@ -129,7 +131,7 @@ class MenuItem extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.network(
+            Image.asset(
               iconUrl,
               width: 41,
               height: 41,

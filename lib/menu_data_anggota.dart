@@ -138,7 +138,7 @@ class MemberCard extends StatelessWidget {
 
   Widget _buildProfileImage() {
     return ClipOval(
-      child: Image.network(
+      child: Image.asset(
         member.imageUrl,
         width: 50,
         height: 50,
