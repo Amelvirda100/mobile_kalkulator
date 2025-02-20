@@ -43,11 +43,6 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Image.network(
-                    'https://cdn.builder.io/api/v1/image/assets/a65bc4c53df446a5a78bf6263ebdce6f/b25c9289f7272034302b3ee92007816807fe4e29c6ed3bff4076d737c14168ff?apiKey=a65bc4c53df446a5a78bf6263ebdce6f&',
-                    width: 19,
-                    fit: BoxFit.contain,
-                  ),
                   const SizedBox(height: 43),
                   const Text(
                     'Hi! Who are you?',

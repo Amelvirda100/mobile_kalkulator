@@ -69,7 +69,10 @@ class LoginForm extends StatelessWidget {
               ),
               child: const Text(
                 'Login',
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -78,20 +81,7 @@ class LoginForm extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 style: const TextStyle(fontSize: 16, color: Color(0xFF31333C)),
-                children: [
-                  const TextSpan(
-                    text: 'You new here? ',
-                    style: TextStyle(fontFamily: 'Inclusive Sans'),
-                  ),
-                  TextSpan(
-                    text: 'Sign Up',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
-                    ),
-                    // Buat navigasi ke halaman signup nanti
-                  ),
-                ],
+                children: [],
               ),
             ),
           ),
