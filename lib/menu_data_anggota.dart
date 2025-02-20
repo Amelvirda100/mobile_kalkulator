@@ -41,29 +41,25 @@ class MenuDataAnggota extends StatelessWidget {
     Member(
       name: 'Laras Ayodya Sari',
       id: '123220081',
-      imageUrl:
-          'https://cdn.builder.io/api/v1/image/assets/TEMP/a61f6acea650861472db38257b7436a8ddced50d4bae81208bc9d28970251f51',
+      imageUrl: 'assets/laras.png',
       isRightAligned: false,
     ),
     Member(
       name: 'Virda Stefany Amelia',
       id: '123220132',
-      imageUrl:
-          'https://cdn.builder.io/api/v1/image/assets/TEMP/a1a35a36dcfa7e61ac44857775c864c1216d2911558974cbd68c916f779dbd8a',
+      imageUrl: 'assets/virda.png',
       isRightAligned: true,
     ),
     Member(
       name: 'R Dhea Venesia Sibuea',
       id: '123220134',
-      imageUrl:
-          'https://cdn.builder.io/api/v1/image/assets/TEMP/26e3a8b787797c740d9daf57292d7af1143f1b4af1e327126f2db2b35af1fde2',
+      imageUrl: 'assets/dhea.png',
       isRightAligned: false,
     ),
     Member(
       name: 'Faiza Nur Rafida',
       id: '123220159',
-      imageUrl:
-          'https://cdn.builder.io/api/v1/image/assets/TEMP/e69e2439f9e63275f68c22d7afa30bce8d1905c6e574a53b3b7c64a659d599ec',
+      imageUrl: 'assets/faiza.png',
       isRightAligned: true,
     ),
   ];

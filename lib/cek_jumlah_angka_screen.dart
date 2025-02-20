@@ -71,14 +71,18 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  Image.network(
-                    'https://cdn.builder.io/api/v1/image/assets/TEMP/b92bb6b7ff90d3e5b5b3b7023bcac2e6b2f908309655601ca30663dccf3e2654',
-                    fit: BoxFit.cover,
-                    width: 300,
+                  Opacity(
+                    opacity: 0.5, // 50% transparan
+                    child: Image.asset(
+                      'assets/cakar.png',
+                      width: 320,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                   Column(
                     children: [
                       Container(
+                        width: 400,
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -124,10 +128,12 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                 alignment: Alignment.bottomRight,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20),
-                  child: Image.network(
-                    'https://cdn.builder.io/api/v1/image/assets/TEMP/328d4e726c35e681782052ef73e98fc5b9efaf13747bb54f225e4e9f1e09e68e',
-                    width: 80,
-                    height: 80,
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Image.asset(
+                      'assets/daduangka.png',
+                      width: 80,
+                    ),
                   ),
                 ),
               ),
