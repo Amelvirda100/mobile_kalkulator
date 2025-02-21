@@ -41,105 +41,116 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFCCD4EE),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 20),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: IconButton(
-                    icon: const Icon(Icons.arrow_back,
-                        size: 30, color: Colors.black),
-                    onPressed: () {
-                      // Aksi kembali, misalnya pop ke halaman sebelumnya
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-              const Text(
-                'Ayo cek jumlah angka yang kamu input!!!',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 20),
-              Stack(
-                alignment: Alignment.center,
+      resizeToAvoidBottomInset:
+          false, // Mencegah tampilan bergeser saat keyboard muncul
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Opacity(
-                    opacity: 0.5, // 50% transparan
-                    child: Image.asset(
-                      'assets/cakar.png',
-                      width: 320,
-                      fit: BoxFit.contain,
-                    ),
+                  const Text(
+                    'Ayo cek jumlah angka yang kamu input!!!',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
                   ),
-                  Column(
+                  const SizedBox(height: 15),
+                  Stack(
+                    alignment: Alignment.center,
                     children: [
-                      Container(
-                        width: 400,
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: TextField(
-                          controller: _controller,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 24),
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                          ),
-                          keyboardType: TextInputType.number,
+                      Opacity(
+                        opacity: 0.5,
+                        child: Image.asset(
+                          'assets/cakar.png',
+                          width: 320,
+                          fit: BoxFit.contain,
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: _checkDigits,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF2D336B),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                      Column(
+                        children: [
+                          Container(
+                            width: 300, // Lebar tetap untuk textfield
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0,
+                                      0.1), // Warna hitam dengan opacity 0.1
+                                  blurRadius: 5,
+                                  spreadRadius: 2,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: TextField(
+                              controller: _controller,
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.center,
+                              decoration: const InputDecoration(
+                                border: InputBorder
+                                    .none, // Hilangkan border default
+                              ),
+                              style: const TextStyle(fontSize: 24),
+                            ),
                           ),
-                        ),
-                        child: const Text(
-                          'Cek',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
+                          const SizedBox(height: 15),
+                          ElevatedButton(
+                            onPressed: _checkDigits,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF2D336B),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 10),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            child: const Text(
+                              'Cek',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Jumlah angka: $_digitCount',
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                  const SizedBox(height: 100),
                 ],
               ),
-              const SizedBox(height: 20),
-              Text(
-                'Jumlah angka: $_digitCount',
-                style: const TextStyle(fontSize: 18),
-              ),
-              const SizedBox(height: 50),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Image.asset(
-                      'assets/daduangka.png',
-                      width: 80,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+          // Gambar tetap berada di pojok kanan bawah
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20, right: 20),
+              child: Image.asset(
+                'assets/daduangka.png',
+                width: 80,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
