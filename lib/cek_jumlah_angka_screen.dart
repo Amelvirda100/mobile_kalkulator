@@ -88,7 +88,7 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                 children: [
                   const Text(
                     'Ayo cek jumlah angka yang kamu input!!!',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Itim'),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 15),
@@ -127,7 +127,7 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
                               ),
-                              style: const TextStyle(fontSize: 24),
+                              style: const TextStyle(fontSize: 24, fontFamily: 'Itim'),
                             ),
                           ),
                           const SizedBox(height: 15),
@@ -144,7 +144,7 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                             child: const Text(
                               'Cek',
                               style:
-                              TextStyle(color: Colors.white, fontSize: 20),
+                              TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'Itim', ),
                             ),
                           ),
                         ],
@@ -154,7 +154,7 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                   const SizedBox(height: 20),
                   Text(
                     'Jumlah angka: $_digitCount',
-                    style: const TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18, fontFamily: 'Itim', ),
                   ),
                   const SizedBox(height: 100),
                 ],
