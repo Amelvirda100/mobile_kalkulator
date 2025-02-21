@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cek Jumlah Angka',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF2D336B)),
         useMaterial3: true,
@@ -143,7 +144,7 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                             child: const Text(
                               'Cek',
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
+                              TextStyle(color: Colors.white, fontSize: 20),
                             ),
                           ),
                         ],
@@ -161,9 +162,9 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
             ),
           ),
           // Animasi agar konten naik saat keyboard muncul
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 300),
-            bottom: keyboardHeight > 0 ? keyboardHeight + 20 : 20,
+          Positioned(
+            bottom: MediaQuery.of(context).viewInsets.bottom > 0 ? -100 : 20,
+            // Jika keyboard muncul, geser keluar layar
             right: 20,
             child: Image.asset(
               'assets/daduangka.png',
