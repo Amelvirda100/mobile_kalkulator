@@ -9,23 +9,55 @@ class _CekAngkaScreenState extends State<CekAngkaScreen> {
   final TextEditingController _controller = TextEditingController();
   String _hasil = "";
 
+  void _showSnackbar(String message, Color color) {
+    double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+        duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          bottom: keyboardHeight > 0
+              ? keyboardHeight + 16
+              : 16, // Naik saat keyboard muncul
+        ),
+      ),
+    );
+  }
+
   void _cekAngka() {
-    if (_controller.text.isNotEmpty) {
-      int? angka = int.tryParse(_controller.text);
-      if (angka != null) {
-        setState(() {
-          _hasil = "$angka adalah angka ${angka % 2 == 0 ? "genap" : "ganjil"}";
-        });
-      }
+    if (_controller.text.isEmpty) {
+      _showSnackbar("Harap masukkan angka terlebih dahulu!", Colors.red);
+      return;
     }
+
+    double? angkaDesimal = double.tryParse(_controller.text);
+    if (angkaDesimal == null) {
+      _showSnackbar("Harap masukkan angka yang valid!", Colors.red);
+      return;
+    }
+
+    if (angkaDesimal % 1 != 0) {
+      _showSnackbar("Cek ganjil-genap hanya berlaku untuk bilangan bulat!",
+          Color(0xFF272C6B));
+      return;
+    }
+
+    int angka = angkaDesimal.toInt();
+    setState(() {
+      _hasil = "$angka adalah angka ${angka % 2 == 0 ? "genap" : "ganjil"}";
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFD1D5EE),
-      resizeToAvoidBottomInset:
-          false, // Mencegah tampilan bergeser saat keyboard muncul
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -80,18 +112,15 @@ class _CekAngkaScreenState extends State<CekAngkaScreen> {
                     _hasil,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
-                      height: 100), // Memberi ruang agar tidak tertutup gambar
+                  SizedBox(height: 100),
                 ],
               ),
             ),
           ),
-          // Gambar tetap berada di pojok kanan bawah
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: const EdgeInsets.only(
-                  bottom: 20, right: 20), // Jarak dari tepi layar
+              padding: const EdgeInsets.only(bottom: 20, right: 20),
               child: Image.asset(
                 'assets/beruangbingung.png',
                 width: 210,

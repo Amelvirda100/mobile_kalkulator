@@ -32,17 +32,40 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
   int _digitCount = 0;
 
   void _checkDigits() {
+    if (_controller.text.isEmpty) {
+      _showSnackBar('Input tidak boleh kosong!', Colors.red);
+      return;
+    }
+
     setState(() {
       _digitCount = RegExp(r'\d').allMatches(_controller.text).length;
     });
   }
 
+  void _showSnackBar(String message, Color color) {
+    final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: color,
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.only(
+          bottom: keyboardHeight > 0 ? keyboardHeight + 20 : 20,
+          left: 16,
+          right: 16,
+        ),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
+
     return Scaffold(
       backgroundColor: const Color(0xFFCCD4EE),
-      resizeToAvoidBottomInset:
-          false, // Mencegah tampilan bergeser saat keyboard muncul
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -82,15 +105,14 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                       Column(
                         children: [
                           Container(
-                            width: 300, // Lebar tetap untuk textfield
+                            width: 300,
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(12),
                               boxShadow: [
-                                BoxShadow(
-                                  color: Color.fromRGBO(0, 0, 0,
-                                      0.1), // Warna hitam dengan opacity 0.1
+                                const BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.1),
                                   blurRadius: 5,
                                   spreadRadius: 2,
                                   offset: Offset(0, 3),
@@ -102,8 +124,7 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                               keyboardType: TextInputType.number,
                               textAlign: TextAlign.center,
                               decoration: const InputDecoration(
-                                border: InputBorder
-                                    .none, // Hilangkan border default
+                                border: InputBorder.none,
                               ),
                               style: const TextStyle(fontSize: 24),
                             ),
@@ -139,15 +160,14 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
               ),
             ),
           ),
-          // Gambar tetap berada di pojok kanan bawah
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20, right: 20),
-              child: Image.asset(
-                'assets/daduangka.png',
-                width: 80,
-              ),
+          // Animasi agar konten naik saat keyboard muncul
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 300),
+            bottom: keyboardHeight > 0 ? keyboardHeight + 20 : 20,
+            right: 20,
+            child: Image.asset(
+              'assets/daduangka.png',
+              width: 80,
             ),
           ),
         ],

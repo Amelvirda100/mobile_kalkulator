@@ -5,11 +5,18 @@ class HeaderImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      'assets/beruangputih.png', // Ganti dengan path yang sesuai di folder assets
-      width: double.infinity,
-      fit: BoxFit.contain,
-      alignment: Alignment.center,
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: IgnorePointer(
+        child: Image.asset(
+          'assets/beruangputih.png',
+          width: double.infinity,
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+        ),
+      ),
     );
   }
 }
