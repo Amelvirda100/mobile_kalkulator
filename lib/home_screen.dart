@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'components/login_form.dart';
 import 'components/header_image.dart';
-
+import 'components/login_form.dart';
 import 'pilihan_menu.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,23 +19,20 @@ class _LoginPageState extends State<LoginPage> {
     String password = passwordController.text.trim();
 
     if (username.isEmpty || password.isEmpty) {
-      // Jika ada field yang kosong, tampilkan notifikasi warna biru/ungu
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text("Mohon lengkapi data Anda!"),
-          backgroundColor: const Color(0xFF5C6BC0), // Warna biru keunguan
+          backgroundColor: const Color(0xFF5C6BC0),
           behavior: SnackBarBehavior.floating,
           margin: const EdgeInsets.all(16),
         ),
       );
     } else if (username == "admin" && password == "1234") {
-      // Jika login berhasil, pindah ke halaman berikutnya
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const PilihanMenu()),
       );
     } else {
-      // Jika username atau password salah, tampilkan notifikasi merah
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text("Username atau password salah!"),
@@ -54,16 +50,14 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: const Color(0xFFB8C4ED),
       body: Stack(
         children: [
-          // Gambar tetap di posisi absolut, tidak naik saat keyboard muncul
           Positioned(
-            top: 100, // Sesuaikan posisi gambar
+            top: 100,
             left: 0,
             right: 0,
             child: const HeaderImage(),
           ),
-
           Positioned(
-            top: 50, // Sesuaikan posisi teks
+            top: 50,
             left: 16,
             right: 75,
             child: const Text(
@@ -75,33 +69,20 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-
-          // Isi utama tetap dalam scrollable layout agar bisa discroll
           Positioned(
             left: 0,
             right: 0,
-            bottom: 0, // Awalnya di paling bawah
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeOut,
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom > 0
-                    ? MediaQuery.of(context).viewInsets.bottom +
-                        1 // Naik saat keyboard muncul
-                    : 0, // Saat keyboard tidak muncul, tetap di paling bawah
+            bottom: 0,
+            child: Container(
+              padding: EdgeInsets.zero,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
               ),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize:
-                      MainAxisSize.min, // Supaya sesuai dengan kontennya
-                  children: [
-                    LoginForm(
-                      usernameController: usernameController,
-                      passwordController: passwordController,
-                      onLogin: login,
-                    ),
-                  ],
-                ),
+              child: LoginForm(
+                usernameController: usernameController,
+                passwordController: passwordController,
+                onLogin: login,
               ),
             ),
           ),
