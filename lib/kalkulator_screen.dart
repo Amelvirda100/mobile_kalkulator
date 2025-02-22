@@ -91,12 +91,14 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Ayo lakukan operasi bilangan !!!",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Itim'),
-                textAlign: TextAlign.center,),
             SizedBox(height: 15),
+            Text("Ayo lakukan operasi bilangan !!!",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'Itim'),
+                textAlign: TextAlign.center,),
+            SizedBox(height: 40),
             TextField(
               controller: _controller1,
               keyboardType: TextInputType.numberWithOptions(decimal: true),

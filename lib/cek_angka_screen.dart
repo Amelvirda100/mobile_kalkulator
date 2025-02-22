@@ -79,12 +79,13 @@ class _CekAngkaScreenState extends State<CekAngkaScreen> {
                 children: [
                   Text(
                     "Masukkan Angka",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'Inria Sans'),
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 40),
                   TextField(
                     controller: _controller,
                     keyboardType: TextInputType.number,
+                    textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -92,6 +93,7 @@ class _CekAngkaScreenState extends State<CekAngkaScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    style: const TextStyle(fontSize: 20, fontFamily: 'Inria Sans'),
                   ),
                   SizedBox(height: 15),
                   ElevatedButton(
@@ -105,12 +107,12 @@ class _CekAngkaScreenState extends State<CekAngkaScreen> {
                       ),
                     ),
                     child: Text("Cek",
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                        style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'Inria Sans')),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 35),
                   Text(
                     _hasil,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Itim'),
                   ),
                   SizedBox(height: 100),
                 ],
