@@ -21,21 +21,28 @@ class _CekAngkaScreenState extends State<CekAngkaScreen> {
         margin: EdgeInsets.only(
           left: 16,
           right: 16,
-          bottom: keyboardHeight > 0
-              ? keyboardHeight + 16
-              : 16, // Naik saat keyboard muncul
+          bottom: keyboardHeight > 0 ? keyboardHeight + 16 : 16,
         ),
       ),
     );
   }
 
   void _cekAngka() {
-    if (_controller.text.isEmpty) {
+    String input = _controller.text.replaceAll(" ", "");
+    _controller.text = input;
+
+    if (input.isEmpty) {
       _showSnackbar("Harap masukkan angka terlebih dahulu!", Colors.red);
       return;
     }
 
-    double? angkaDesimal = double.tryParse(_controller.text);
+    if (input.contains(',')) {
+      _showSnackbar(
+          "Gunakan titik (.) untuk angka desimal, bukan koma (,)!", Colors.red);
+      return;
+    }
+
+    double? angkaDesimal = double.tryParse(input);
     if (angkaDesimal == null) {
       _showSnackbar("Harap masukkan angka yang valid!", Colors.red);
       return;
@@ -79,7 +86,10 @@ class _CekAngkaScreenState extends State<CekAngkaScreen> {
                 children: [
                   Text(
                     "Masukkan Angka",
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'Inria Sans'),
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Inria Sans'),
                   ),
                   SizedBox(height: 40),
                   TextField(
@@ -93,7 +103,8 @@ class _CekAngkaScreenState extends State<CekAngkaScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    style: const TextStyle(fontSize: 20, fontFamily: 'Inria Sans'),
+                    style:
+                        const TextStyle(fontSize: 20, fontFamily: 'Inria Sans'),
                   ),
                   SizedBox(height: 15),
                   ElevatedButton(
@@ -107,12 +118,18 @@ class _CekAngkaScreenState extends State<CekAngkaScreen> {
                       ),
                     ),
                     child: Text("Cek",
-                        style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'Inria Sans')),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontFamily: 'Inria Sans')),
                   ),
                   SizedBox(height: 35),
                   Text(
                     _hasil,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Itim'),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Itim'),
                   ),
                   SizedBox(height: 100),
                 ],
