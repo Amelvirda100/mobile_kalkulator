@@ -124,6 +124,7 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
             TextField(
               controller: _controller1,
               keyboardType: TextInputType.numberWithOptions(decimal: true),
+              textAlign: TextAlign.center,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
@@ -137,6 +138,7 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
             TextField(
               controller: _controller2,
               keyboardType: TextInputType.numberWithOptions(decimal: true),
+              textAlign: TextAlign.center,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,

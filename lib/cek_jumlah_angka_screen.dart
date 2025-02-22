@@ -109,7 +109,7 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                   const Text(
                     'Ayo cek jumlah angka yang kamu input!!!',
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Itim'),
                     textAlign: TextAlign.center,
@@ -151,10 +151,10 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                                 border: InputBorder.none,
                               ),
                               style: const TextStyle(
-                                  fontSize: 24, fontFamily: 'Itim'),
+                                  fontSize: 22, fontFamily: 'Itim'),
                             ),
                           ),
-                          const SizedBox(height: 15),
+                          const SizedBox(height: 20),
                           ElevatedButton(
                             onPressed: _checkDigits,
                             style: ElevatedButton.styleFrom(
@@ -169,16 +169,16 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                               'Cek',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 22,
                                 fontFamily: 'Itim',
                               ),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 30),
                           Text(
                             'Jumlah angka: $_digitCount',
                             style: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 22,
                               fontFamily: 'Itim',
                             ),
                           ),
