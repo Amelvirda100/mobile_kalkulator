@@ -94,7 +94,8 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Ayo lakukan operasi bilangan !!!",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Itim'),
+                textAlign: TextAlign.center,),
             SizedBox(height: 15),
             TextField(
               controller: _controller1,
