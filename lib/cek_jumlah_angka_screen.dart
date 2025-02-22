@@ -33,13 +33,33 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
   int _digitCount = 0;
 
   void _checkDigits() {
-    if (_controller.text.isEmpty) {
+    String input = _controller.text;
+
+    if (input.isEmpty) {
       _showSnackBar('Input tidak boleh kosong!', Colors.red);
       return;
     }
 
+    if (input.contains(',')) {
+      _showSnackBar('Mohon gunakan titik sebagai pemisah desimal, bukan koma!',
+          Colors.purple);
+      return;
+    }
+
+    if (input.contains(RegExp(r'\s'))) {
+      input = input.replaceAll(RegExp(r'\s+'), '');
+      _controller.text = input;
+      _showSnackBar('Spasi dihapus dari input!', Colors.orange);
+    }
+
+    if (input.contains('-')) {
+      input = input.replaceAll('-', '');
+      _controller.text = input;
+      _showSnackBar('Tanda negatif dihapus dari input!', Colors.orange);
+    }
+
     setState(() {
-      _digitCount = RegExp(r'\d').allMatches(_controller.text).length;
+      _digitCount = RegExp(r'\d').allMatches(input).length;
     });
   }
 
@@ -88,7 +108,10 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                 children: [
                   const Text(
                     'Ayo cek jumlah angka yang kamu input!!!',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'Itim'),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Itim'),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 15),
@@ -127,7 +150,8 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
                               ),
-                              style: const TextStyle(fontSize: 22, fontFamily: 'Itim'),
+                              style: const TextStyle(
+                                  fontSize: 24, fontFamily: 'Itim'),
                             ),
                           ),
                           const SizedBox(height: 15),
@@ -143,28 +167,32 @@ class _CheckNumberScreenState extends State<CheckNumberScreen> {
                             ),
                             child: const Text(
                               'Cek',
-                              style:
-                              TextStyle(color: Colors.white, fontSize: 22, fontFamily: 'Itim', ),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontFamily: 'Itim',
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Jumlah angka: $_digitCount',
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Itim',
                             ),
                           ),
                         ],
                       ),
                     ],
                   ),
-                  const SizedBox(height: 15),
-                  Text(
-                    'Jumlah angka: $_digitCount',
-                    style: const TextStyle(fontSize: 22, fontFamily: 'Itim', ),
-                  ),
                   const SizedBox(height: 100),
                 ],
               ),
             ),
           ),
-          // Animasi agar konten naik saat keyboard muncul
           Positioned(
-            bottom: MediaQuery.of(context).viewInsets.bottom > 0 ? -100 : 20,
-            // Jika keyboard muncul, geser keluar layar
+            bottom: keyboardHeight > 0 ? -100 : 20,
             right: 20,
             child: Image.asset(
               'assets/daduangka.png',
