@@ -16,11 +16,28 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
   final TextEditingController _controller1 = TextEditingController();
   final TextEditingController _controller2 = TextEditingController();
   String _hasil = "";
-  String _operator = "assets/plus.png"; // Gambar awal simbol
+  String _operator = "assets/maths.png"; // Gambar awal simbol
 
   void _hitung(String operasi) {
+    // Hapus spasi dari input
+    _controller1.text = _controller1.text.replaceAll(" ", "");
+    _controller2.text = _controller2.text.replaceAll(" ", "");
+
     String input1 = _controller1.text;
     String input2 = _controller2.text;
+
+    // Error handling jika hanya satu field yang terisi
+    if ((input1.isEmpty && input2.isNotEmpty) ||
+        (input2.isEmpty && input1.isNotEmpty)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Yuk lengkapi kedua kolom"),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.purple,
+        ),
+      );
+      return;
+    }
 
     // Cek apakah input mengandung koma
     if (input1.contains(",") || input2.contains(",")) {
@@ -95,9 +112,14 @@ class _KalkulatorScreenState extends State<KalkulatorScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 15),
-            Text("Ayo lakukan operasi bilangan !!!",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'Itim'),
-                textAlign: TextAlign.center,),
+            Text(
+              "Ayo lakukan operasi bilangan !!!",
+              style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Itim'),
+              textAlign: TextAlign.center,
+            ),
             SizedBox(height: 40),
             TextField(
               controller: _controller1,
